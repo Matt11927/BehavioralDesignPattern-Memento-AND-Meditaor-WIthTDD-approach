@@ -90,4 +90,27 @@ public class ChatAppTest {
         assertEquals( expectedMessages , actualMessage );
     }
 
+    @Test
+    void testBlockedUserMessages() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User("Bruce", server);
+        User ruby = new User("Ruby", server);
+
+        server.registerUser(bruce);
+        server.registerUser(ruby);
+
+        server.blockUser("Ruby", "Bruce");
+
+        bruce.sendMessage( "Hey Ruby, Would you like to go get food with me?" , List.of( "Ruby" ) );
+
+        int expectedMessage = 0;
+        int actualMessage = ruby.getReceivedMessages().size();
+
+        assertEquals( expectedMessage , actualMessage );
+    }
+
+
+
 }
