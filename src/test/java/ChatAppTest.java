@@ -53,11 +53,11 @@ public class ChatAppTest {
 
         ChatServer server = new ChatServer();
 
-        User bruce = new User("Bruce", server);
-        User ruby = new User("Ruby", server);
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
 
-        server.registerUser(bruce);
-        server.registerUser(ruby);
+        server.registerUser( bruce );
+        server.registerUser( ruby );
 
         bruce.sendMessage( "Hey Ruby was wondering if you want to go out sometime?" , List.of( "Ruby" ) );
 
@@ -65,6 +65,29 @@ public class ChatAppTest {
         int actualMessages = bruce.getChatHistory().getHistorySize();
 
         assertEquals( expectedMessages , actualMessages );
+    }
+
+
+    @Test
+    void testUndoLastMessage() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
+
+        server.registerUser( bruce );
+        server.registerUser( ruby );
+
+        bruce.sendMessage( "Hello Ruby" , List.of( "Ruby" ) );
+        bruce.sendMessage( "Are you free tomorrow?" , List.of( "Ruby" ) );
+
+        bruce.undoLastMessage();
+
+        int expectedMessages = 1;
+        int actualMessage = bruce.getChatHistory().getHistorySize();
+
+        assertEquals( expectedMessages , actualMessage );
     }
 
 }
