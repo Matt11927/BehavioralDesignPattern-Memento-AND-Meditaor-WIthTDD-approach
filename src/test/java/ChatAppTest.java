@@ -131,6 +131,33 @@ public class ChatAppTest {
         assertEquals( expectedMessage , actualMessage );
     }
 
+    @Test
+    void testBlockUsersCanStillSendMessageToUnblockRecipient(){
+        ChatServer server = new ChatServer();
+
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
+        User silvana  = new User( "Silvana" , server );
+
+        server.registerUser( bruce );
+        server.registerUser( ruby );
+        server.registerUser( silvana );
+
+        server.blockUser("Ruby", "Bruce");
+
+        bruce.sendMessage( "Hey Ruby, Would you like to go get food with me?" , List.of( "Ruby" , "Silvana" ) );
+
+        int expectedRubyMessage = 0;
+        int actualRubyMessage = ruby.getReceivedMessages().size();
+
+        int expectedSilvanaMessage = 1;
+        int actualSilvanaMessage = silvana.getReceivedMessages().size();
+
+        assertEquals( expectedRubyMessage , actualRubyMessage );
+        assertEquals( expectedSilvanaMessage , actualSilvanaMessage );
+
+    }
+
 
 
 }
