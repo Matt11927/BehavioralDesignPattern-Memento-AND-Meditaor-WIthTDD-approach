@@ -23,4 +23,27 @@ public class ChatAppTest {
         assertEquals(expectedMessages,actualMessages);
     }
 
+    @Test
+    void testSendMessageToMultipleRecipients() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
+        User silvana  = new User( "silvana" , server );
+
+        server.registerUser( bruce );
+        server.registerUser( ruby );
+        server.registerUser( silvana );
+
+        bruce.sendMessage( "Ruby and Silvana what times should we meet up?" , List.of( "Ruby" , "Silvana" ) );
+
+        int expectedMessages = 1;
+        int actualRubyMessages = ruby.getReceivedMessages().size();
+        int actualSilvanaMessages = silvana.getReceivedMessages().size();
+
+        assertEquals( expectedMessages , actualRubyMessages );
+        assertEquals( expectedMessages , actualSilvanaMessages );
+    }
+
 }
