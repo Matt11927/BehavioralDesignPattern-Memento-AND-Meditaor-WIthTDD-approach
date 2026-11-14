@@ -22,5 +22,13 @@ public class User {
     void setReceivedMessages( Message messages ){ receivedMessages.add( messages ); }
     public List<Message> getReceivedMessages(){ return receivedMessages; }
 
+    public void undoLastMessage(){
+        MessageMemento removedMessage = chatHistory.undoMessage();
+
+        if( removedMessage != null ){
+            System.out.println( "Undoing message: " + removedMessage.getContent() );
+        }
+    }
+
     public ChatHistory getChatHistory(){ return chatHistory; }
 }

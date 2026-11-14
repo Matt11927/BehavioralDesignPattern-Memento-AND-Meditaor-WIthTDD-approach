@@ -6,7 +6,12 @@ public class ChatHistory {
 
     public ChatHistory(){ history = new Stack<>(); }
 
-    public void addMessage( MessageMemento memento ){ history.push(memento); }
+    public void addMessage( MessageMemento memento ){ history.push( memento ); }
+
+    public MessageMemento undoMessage(){
+        if( !history.isEmpty() ){ return history.pop(); }
+        return null;
+    }
 
     public int getHistorySize(){ return history.size(); }
 
