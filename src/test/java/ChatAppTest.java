@@ -30,7 +30,7 @@ public class ChatAppTest {
 
         User bruce = new User( "Bruce" , server );
         User ruby = new User( "Ruby" , server );
-        User silvana  = new User( "silvana" , server );
+        User silvana  = new User( "Silvana" , server );
 
         server.registerUser( bruce );
         server.registerUser( ruby );
