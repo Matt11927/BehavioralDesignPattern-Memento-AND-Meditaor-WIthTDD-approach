@@ -95,11 +95,11 @@ public class ChatAppTest {
 
         ChatServer server = new ChatServer();
 
-        User bruce = new User("Bruce", server);
-        User ruby = new User("Ruby", server);
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
 
-        server.registerUser(bruce);
-        server.registerUser(ruby);
+        server.registerUser( bruce );
+        server.registerUser( ruby );
 
         server.blockUser("Ruby", "Bruce");
 
@@ -107,6 +107,26 @@ public class ChatAppTest {
 
         int expectedMessage = 0;
         int actualMessage = ruby.getReceivedMessages().size();
+
+        assertEquals( expectedMessage , actualMessage );
+    }
+
+
+    @Test
+    void testViewChatHistory() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User("Bruce" , server );
+        User ruby = new User("Ruby" , server );
+
+        server.registerUser( bruce );
+        server.registerUser( ruby );
+
+        bruce.sendMessage( "Ruby! Have you seen the weather news!" ,  List.of( "Ruby" ) );
+
+        int expectedMessage = 1;
+        int actualMessage = bruce.getChatHistory().getHistorySize();
 
         assertEquals( expectedMessage , actualMessage );
     }
