@@ -18,7 +18,7 @@ public class ChatAppTest {
         bruce.sendMessage("Hey Ruby how have you been?", List.of("Ruby"));
 
         int expectedMessages = 1;
-        int actualMessages = bruce.getRecievedMessages().size();
+        int actualMessages = ruby.getReceivedMessages().size();
 
         assertEquals(expectedMessages,actualMessages);
     }
