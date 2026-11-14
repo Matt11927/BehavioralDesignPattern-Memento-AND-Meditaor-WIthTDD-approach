@@ -46,4 +46,25 @@ public class ChatAppTest {
         assertEquals( expectedMessages , actualSilvanaMessages );
     }
 
+
+
+    @Test
+    void testMessageSavedToHistory() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User("Bruce", server);
+        User ruby = new User("Ruby", server);
+
+        server.registerUser(bruce);
+        server.registerUser(ruby);
+
+        bruce.sendMessage( "Hey Ruby was wondering if you want to go out sometime?" , List.of( "Ruby" ) );
+
+        int expectedMessages = 1;
+        int actualMessages = bruce.getChatHistory().getHistorySize();
+
+        assertEquals( expectedMessages , actualMessages );
+    }
+
 }
