@@ -18,7 +18,7 @@ public class User implements IterableByUser {
     public String getUsername(){ return username; }
     public void sendMessage( String content , List<String> recipients ){
         server.sendMessage(this , content , recipients);
-        chatHistory.addMessage( new MessageMemento( content ) );
+        chatHistory.addMessage( new MessageMemento( username , content ) );
     }
     void setReceivedMessages( Message messages ){ receivedMessages.add( messages ); }
     public List<Message> getReceivedMessages(){ return receivedMessages; }

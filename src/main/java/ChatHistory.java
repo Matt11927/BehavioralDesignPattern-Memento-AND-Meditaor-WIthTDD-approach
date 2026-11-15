@@ -16,6 +16,8 @@ public class ChatHistory implements IterableByUser {
 
     public int getHistorySize(){ return history.size(); }
 
+    public Stack<MessageMemento> getHistory() { return history; }
+
     public void displayHistory() {
         for ( MessageMemento message : history ) {
             System.out.println( message.getContent() );
