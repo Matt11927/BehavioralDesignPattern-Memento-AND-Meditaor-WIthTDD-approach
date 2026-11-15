@@ -159,5 +159,33 @@ public class ChatAppTest {
     }
 
 
+    @Test
+    void testSearchMessagesByUser() {
+        ChatServer server = new ChatServer();
+
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
+
+        server.registerUser( bruce );
+        server.registerUser( ruby );
+
+        bruce.sendMessage( "Can you pick me up?" ,  List.of( "Ruby" ) );
+
+        bruce.sendMessage( "I'm at citadel" , List.of( "Ruby" ) );
+
+        Iterator iterator = bruce.iterator(bruce);
+
+        int actualMessage = 0;
+
+        while(iterator.hasNext()) {
+            iterator.next();
+            actualMessage++;
+        }
+        int expectedMessage = 2;
+
+        assertEquals(expectedMessage , actualMessage);
+    }
+
+
 
 }
