@@ -13,11 +13,21 @@ public class SearchMessagesByUser implements Iterator<MessageMemento> {
     }
     @Override
     public boolean hasNext() {
+        while ( index < history.size() ) {
+            MessageMemento message = history.get( index );
+            if ( message.getSender().equals( userToSearchWith.getUsername() ) ) {
+                return true;
+            }
+            index++;
+        }
         return false;
     }
 
     @Override
     public MessageMemento next() {
+        if ( hasNext() ) {
+            return history.get( index++ );
+        }
         return null;
     }
 }
