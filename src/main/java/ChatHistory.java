@@ -1,6 +1,7 @@
+import java.util.Iterator;
 import java.util.Stack;
 
-public class ChatHistory {
+public class ChatHistory{
 
     private Stack<MessageMemento> history;
 
