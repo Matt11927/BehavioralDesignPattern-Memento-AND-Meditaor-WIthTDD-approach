@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
 
-public class ChatHistory{
+public class ChatHistory implements IterableByUser {
 
     private Stack<MessageMemento> history;
 
@@ -22,4 +22,8 @@ public class ChatHistory{
         }
     }
 
+    @Override
+    public Iterator iterator( User userToSearchWith ) {
+        return new SearchMessagesByUser( this, userToSearchWith);
+    }
 }

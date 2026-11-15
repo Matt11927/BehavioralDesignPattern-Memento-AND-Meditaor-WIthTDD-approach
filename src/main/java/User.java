@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class User {
+public class User implements IterableByUser {
 
     private String username;
     private ChatServer server;
@@ -31,4 +32,9 @@ public class User {
     }
 
     public ChatHistory getChatHistory(){ return chatHistory; }
+
+    @Override
+    public Iterator iterator( User userToSearchWith ) {
+        return chatHistory.iterator( userToSearchWith );
+    }
 }
