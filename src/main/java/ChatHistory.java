@@ -15,4 +15,10 @@ public class ChatHistory {
 
     public int getHistorySize(){ return history.size(); }
 
+    public void displayHistory() {
+        for ( MessageMemento message : history ) {
+            System.out.println( message.getContent() );
+        }
+    }
+
 }
