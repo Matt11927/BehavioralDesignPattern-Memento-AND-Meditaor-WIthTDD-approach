@@ -32,8 +32,12 @@ public class Main {
         bruce.getChatHistory().displayHistory();
 
         System.out.println("\n Received Messages ");
-        System.out.println( "Ruby Messages: " + ruby.getReceivedMessages().size() );
-        System.out.println( "Silvana Messages: " + silvana.getReceivedMessages().size() );
+        System.out.println( "Ruby Messages: " + ruby.getReceivedMessages().size() + " Message TimeStamps: " +ruby.getReceivedMessages().get(0).getTimestamp() );
+        System.out.println( "Silvana Messages: " + silvana.getReceivedMessages().size() + " Message TimeStamps: " + silvana.getReceivedMessages().get(0).getTimestamp() );
+
+        System.out.println("\n Unregister User ");
+        server.unregisterUser(silvana);
+        System.out.println( "Silvana has been unregistered." );
 
     }
 

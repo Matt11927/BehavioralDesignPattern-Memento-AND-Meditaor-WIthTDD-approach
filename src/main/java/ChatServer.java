@@ -10,7 +10,9 @@ public class ChatServer {
         blockedUsers = new HashMap<>();
     }
 
-    public void registerUser(User user) { users.put( user.getUsername(), user );  }
+    public void registerUser( User user ) { users.put( user.getUsername(), user );  }
+
+    public void unregisterUser( User user ){ users.remove( user.getUsername() ); }
 
     public void blockUser( String blocker , String blockedUser ){
         blockedUsers.computeIfAbsent( blocker , k -> new HashSet<>() ).add( blockedUser );
@@ -23,7 +25,7 @@ public class ChatServer {
                 boolean isBlocked = blockedUsers.containsKey( recipient ) && blockedUsers.get( recipient ).contains( sender.getUsername() );
 
                if( !isBlocked ) {
-                   Message message = new Message(sender.getUsername(), content);
+                   Message message = new Message(sender.getUsername(), recipients, content);
                    user.setReceivedMessages(message);
                }
             }
