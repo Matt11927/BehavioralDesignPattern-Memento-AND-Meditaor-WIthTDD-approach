@@ -189,5 +189,35 @@ public class ChatAppTest {
     }
 
 
+    @Test
+    void testIteratorOnlyReturnsMessagesForSpecificUser() {
+
+        ChatServer server = new ChatServer();
+
+        User bruce = new User( "Bruce" , server );
+        User ruby = new User( "Ruby" , server );
+
+        server.registerUser(bruce);
+        server.registerUser(ruby);
+
+        bruce.sendMessage( "Bruce Message 1" , List.of( "Ruby" ) );
+        ruby.sendMessage( "Ruby Message 1" , List.of( "Bruce" ) );
+        bruce.sendMessage( "Bruce Message 2" , List.of( "Ruby" ) );
+
+        Iterator iterator = bruce.iterator(bruce);
+
+        int actualMessage = 0;
+
+        while (iterator.hasNext()) {
+            iterator.next();
+            actualMessage++;
+        }
+
+        int expectedMessage = 2;
+
+        assertEquals( expectedMessage , actualMessage );
+    }
+
+
 
 }
